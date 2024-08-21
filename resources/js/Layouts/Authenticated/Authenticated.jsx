@@ -1,9 +1,9 @@
-import Navbar from "./Navbar"
+import NavbarNav from "./Navbar"
 
-export default function Authenticated({auth,children}){
+export default function Authenticated({checkAuth,children}){
     return(
         <>
-        <Navbar/>
+        <NavbarNav checkAuth={checkAuth}/>
         <div className="container">
             {children}
         </div>

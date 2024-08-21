@@ -1,7 +1,7 @@
 import Authenticated from "@/Layouts/Authenticated/Authenticated"
 import LoginPage from "./Auth/LoginPage"
 import { Head } from "@inertiajs/react"
-Head
+
 
 
 export default function HomeGuest(){
@@ -10,7 +10,7 @@ export default function HomeGuest(){
            <Authenticated>
             <Head title={"Login"}/>
             <div className="container">
-            <LoginPage/>
+                <LoginPage/>
             </div>
            </Authenticated>
         </>
