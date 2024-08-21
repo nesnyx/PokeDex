@@ -6,14 +6,14 @@ export default function Home({auth}){
         <>
         <Authenticated auth={auth}>
             <Head title="Home"/>
-            <div className="container">
+            <div className="container mx-auto">
                 <div className={"row mt-5"}>
                     <h1>Welcome <strong>{auth.user.name}</strong></h1>
                     <div className={"col-md-6"}>
-                    <CreatureCard/>
+                        <CreatureCard/>
                     </div>
                     <div className={"col-md-6"}>
-
+                        <CreatureCard/>
                     </div>
                 </div>
             </div>

@@ -26,11 +26,18 @@ class AuthenticatedSessionController extends Controller
      */
     public function store(LoginRequest $request): RedirectResponse
     {
-        $request->authenticate();
-
+        
+        if (!$request->authenticate()) {
+            response()->json([
+                'status'=>'error',
+                "message"=>'credentials invalid'
+            ],401);
+        }
+        
         $request->session()->regenerate();
 
         return redirect()->intended(route('dashboard', absolute: false));
+        
     }
 
     /**
