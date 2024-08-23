@@ -47,7 +47,7 @@ import {
                         type="email"
                         name="email"
                         id="email"
-                        onChange={onHandler}
+                        handleChange={onHandler}
                         isFocused={true}
                         value={data.email}
                         placeholder="email"
@@ -65,7 +65,7 @@ import {
                             isFocused={true}
                             value={data.password}
                             placeholder="password"
-                            onChange={onHandler}
+                            handleChange={onHandler}
                             required
                         />
                         <InputError message={errors.password} className="mt-2" />
