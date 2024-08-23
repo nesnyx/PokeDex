@@ -3,15 +3,26 @@
 namespace App\Http\Controllers\User;
 
 use App\Http\Controllers\Controller;
+use App\Models\Creature;
+use App\Models\Point;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Validator;
+use Inertia\Inertia;
+
+use function Termwind\render;
 
 class CreatureController extends Controller
 {
     
     public function index()
     {
-        
+        $point = Point::where('user_id','=',Auth::id())->where('points','>',0)->first();
+        $creature = Creature::all();
+        return Inertia::render('Home',[
+            'creatures'=>$creature,
+            'points'=>$point
+        ]);
     }
 
     /**

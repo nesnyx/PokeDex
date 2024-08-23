@@ -16,6 +16,5 @@ class Creature extends Model
         'category',
         'price',
         'thumbnail',
-        
     ];
 }
