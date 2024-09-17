@@ -30,7 +30,7 @@ class AdminController extends Controller
 
     public function create(){
 
-       
+    
         return Inertia::render('Admin/Dashboard/Create');        
     }
 

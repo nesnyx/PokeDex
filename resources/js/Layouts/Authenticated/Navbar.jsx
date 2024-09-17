@@ -13,7 +13,6 @@ function NavList() {
     const {checkAuth} = usePage().props
     return (
       <ul className="my-2 flex flex-col gap-2 lg:mb-0 lg:mt-0 lg:flex-row lg:items-center lg:gap-6">
-        
         <Typography
           as="li"
           variant="small"
@@ -23,6 +22,29 @@ function NavList() {
             {
             checkAuth && (
                 <>
+                    <Link href={route('user.dashboard.index')} as='button' className='flex items-center transition-colors hover:text-blue-500'>
+                        Home
+                    </Link>
+
+                
+                </>
+                
+                
+            ) 
+        } 
+          
+        </Typography>
+
+        <Typography 
+          as="li"
+          variant="small"
+          color="blue-gray"
+          className="p-1 font-medium"
+        >
+            {
+            checkAuth && (
+                <>
+                
                     <Link href={route('logout')} as='button' className='flex items-center transition-colors hover:text-blue-500' method='post'>
                         Logout
                     </Link>
@@ -95,7 +117,7 @@ export default function NavbarNav(){
                     className="mr-4 cursor-pointer py-1.5"
                     >
                         <Link href={route('login')}>
-                        PokeDex
+                          PokeDex
                         </Link>
                     </Typography>
                     <div className="hidden lg:block">

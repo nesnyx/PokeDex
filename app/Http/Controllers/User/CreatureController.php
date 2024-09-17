@@ -5,8 +5,10 @@ namespace App\Http\Controllers\User;
 use App\Http\Controllers\Controller;
 use App\Models\Creature;
 use App\Models\Point;
+use App\Models\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Validator;
 use Inertia\Inertia;
 
@@ -17,11 +19,13 @@ class CreatureController extends Controller
     
     public function index()
     {
-        $point = Point::where('user_id','=',Auth::id())->where('points','>',0)->first();
+        // $point = Point::where('user_id','=',Auth::id())->where('points','>',0)->first();
+        $point = DB::table('points')->where('points.user_id',Auth::id())->join('users','users.id','=','points.user_id')->first();
+        // dd($point[0]);
         $creature = Creature::all();
         return Inertia::render('Home',[
             'creatures'=>$creature,
-            'points'=>$point
+            'points'=>$point->points
         ]);
     }
 

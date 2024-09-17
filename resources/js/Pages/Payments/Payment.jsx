@@ -8,9 +8,21 @@ import {
     Button,
   } from "@material-tailwind/react";
 
-  import { Link, Head } from "@inertiajs/react";
+  import { Link, Head, useForm } from "@inertiajs/react";
 
-export default function Payment(){
+
+export default function Payment({auth}){
+
+    const {setData, post, processing, errors} = useForm({
+        user_id:auth.user.id,
+        points:500,
+    })
+
+    const onHandlerSubmit = (e) =>{
+        e.preventDefault(); 
+        post(route('payment.store'))
+    }
+
     return (
         <>
         <Authenticated>
@@ -19,10 +31,11 @@ export default function Payment(){
             </Head>
             <div className="mt-5 mb-5">
                 <div className="row">
+                    
                     <div className={"col-md-12 flex justify-center text-center"}>
                     <Card>
                         <CardHeader>
-                            <Typography variant="h5">
+                            <Typography variant="h2">
                                 Top Up
                             </Typography>
                         </CardHeader>
@@ -35,11 +48,13 @@ export default function Payment(){
                            </Typography>
                            
                         </CardBody>
-                        <CardFooter>
-                            <Button className={"text-teal-600"}>
-                                Pay
-                            </Button>
-                        </CardFooter>
+                        <form onSubmit={onHandlerSubmit}>
+                            <CardFooter>
+                                <Button type="submit" className={"text-teal-600"}>
+                                    Pay
+                                </Button>
+                            </CardFooter>
+                        </form>
                     </Card>
                     </div>
                 </div>
