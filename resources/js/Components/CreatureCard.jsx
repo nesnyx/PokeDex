@@ -7,9 +7,16 @@ import {
     Typography,
     Button,
   } from "@material-tailwind/react";
+import { useState } from "react";
 
 
 export default function CreatureCard({name,price,thumbnail,points}){
+
+    const [isPoint, setIsPoint] = useState()
+    const onChecking = (e)=>{
+            e.preventDefault()
+            console.log(points)
+    }
     return(
         
             <Card className="mt-6 w-96 mb-7">
@@ -34,9 +41,10 @@ export default function CreatureCard({name,price,thumbnail,points}){
                 </CardBody>
                 <CardFooter className={"pt-0 "}>
                         {points ? (
-                            <Button className={"text-teal-700 hover:text-teal-100 hover:bg-teal-950"}>Buy</Button>
+                            <Button onClick={onChecking} className={"text-teal-700 hover:text-teal-100 hover:bg-teal-950"}>Buy</Button>
+                            
                         ) : (
-                            <Button className={"bg-black "} disabled={true}>Insufficient points</Button>
+                            <Button className={"bg-slate-400 "} disabled={true}>Insufficient points</Button>
                         )}
                     
                 </CardFooter>

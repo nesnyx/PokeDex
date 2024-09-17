@@ -6,6 +6,7 @@ use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\User\CreatureController;
 use App\Http\Controllers\User\PaymentController;
 use Illuminate\Foundation\Application;
+use Illuminate\Routing\Router;
 use Illuminate\Support\Facades\Route;
 use Inertia\Inertia;
 
@@ -18,9 +19,8 @@ use Inertia\Inertia;
 //     ]);
 // });
 Route::middleware(['auth','role:user'])->prefix('user')->name('user.dashboard.')->group(function(){
+    
     Route::get('/dashboard',[CreatureController::class,'index'])->name('index');
-    
-    
 });
 
 
@@ -37,6 +37,12 @@ Route::middleware('auth')->group(function () {
     Route::patch('/profile', [ProfileController::class, 'update'])->name('profile.update');
     Route::delete('/profile', [ProfileController::class, 'destroy'])->name('profile.destroy');
     Route::get("/profile/payments",[PaymentController::class, 'index'])->name('payment.index');
+    Route::post('/profile/payments',[PaymentController::class, 'store'])->name("payment.store");
 });
+
+Route::middleware('auth')->group(function(){
+    Route::redirect('/','/user/dashboard');
+});
+
 
 require __DIR__.'/auth.php';
